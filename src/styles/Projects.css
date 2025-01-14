@@ -1,0 +1,116 @@
+/* General Section Styles */
+.projects-section {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: linear-gradient(to bottom, #141e30, #243b55);
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Project Cards in Carousel */
+.project-carousel .slick-slide {
+  padding: 0 10px;
+  margin-top: 30px; /* Add some space between the cards */
+}
+
+.project-card {
+  width: 100%;
+  height: 400px;
+  perspective: 1000px;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+
+.project-card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Front Side */
+.card-front {
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-image {
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
+}
+
+.project-title {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+
+/* Back Side */
+.card-back {
+  background: #1de9b6;
+  color: #000;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.project-description {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.project-link {
+  font-size: 1rem;
+  color: #ffffff;
+  background: #243b55;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.project-link:hover {
+  background: #ffffff;
+  color: #243b55;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .projects-section{
+    min-height: 100vh;
+  }
+  .project-carousel{
+    margin-top: 60px;
+  }
+  .project-title {
+    font-size: 1.2rem;
+  }
+
+  .project-description {
+    font-size: 1rem;
+  }
+}

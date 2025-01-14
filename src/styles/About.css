@@ -1,0 +1,168 @@
+/* About Section */
+.about-section {
+    padding: 4rem 2rem;
+    min-height: 100vh;
+  }
+  
+  .about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+  
+  .about-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    position: relative; /* Prevents content shifting */
+    overflow: hidden;
+  }
+  
+  .about-left {
+    flex: 1;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    text-align:justify;
+  }
+  .about-left h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .about-left ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .about-left ul strong,span {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+ /* About Section Right (Internship Details) */
+.about-right {
+    flex: 1;
+    text-align: left;
+    padding: 2rem;
+    position: relative;
+  }
+  
+  .about-right h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #1de9b6;
+  }
+  
+  /* Style for each details block */
+  .about-right details {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  /* Style for the summary element (clickable) */
+  .about-right summary {
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: #243b55;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    user-select: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .about-right summary:hover {
+    background-color: #1de9b6;
+    color: #fff;
+  }
+  
+  /* Style for the p (paragraph) element inside details */
+  .about-right details p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #333;
+    padding-top: 10px;
+    padding-left: 10px;
+    text-align: justify;
+  }
+  
+  /* Hover effect on details */
+  .about-right details:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .about-right {
+      padding: 1rem;
+    }
+  
+    .about-right h3 {
+      font-size: 1.8rem;
+    }
+  
+    .about-right details {
+      padding: 0.8rem;
+    }
+  
+    .about-right summary {
+      font-size: 1rem;
+    }
+  }
+  
+  /* Divider Line in the Middle */
+  .divider {
+    width: 4px;
+    background: linear-gradient(180deg, rgba(29, 233, 182, 0.8), transparent);
+    height: 70vh; /* Set a fixed height to make sure it is visible initially */
+    margin: 0 2rem; /* Add spacing around the divider */
+    position: relative;
+  }
+  
+  /* Shine Animation for the Divider Line */
+  @keyframes shine {
+    0% {
+      height: 0;
+    }
+    50% {
+      height: 80%;  /* You can adjust the height percentage */
+    }
+    100% {
+      height: 0;
+    }
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .about-content {
+      flex-direction: column;
+      text-align: center;
+      min-height: 100vh;
+    }
+  
+    .about-left, .about-right {
+      text-align: center;
+    }
+  
+    .about-left {
+      margin-bottom: 1rem;
+    }
+  
+    .divider {
+      display: none;
+    }
+  }

@@ -7,11 +7,11 @@ import Contact from "./components/Contact";
 import Skill from "./components/Skill";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
 const App = () => {
@@ -37,27 +37,6 @@ const App = () => {
         <Projects />
       </motion.section>
       <Skill />
-
-      {/* parallel effect */}
-      {/* <section
-        id="parallax"
-        style={{
-          height: "100vh",
-          backgroundAttachment: "fixed",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          color: "#fff",
-          fontSize: "2rem",
-          fontWeight: "bold",
-        }}
-      >
-        <h2>Experience the Depth of Parallax</h2>
-      </section> */}
-
       <Contact />
     </div>
   );

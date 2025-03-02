@@ -1,75 +1,123 @@
-import React from "react";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { FaGraduationCap, FaBriefcase } from 'react-icons/fa';
 import "../styles/About.css";
 
 const About = () => {
+  const education = [
+    {
+      institution: "Pune Vidyarthi Griha's College of Science & Technology",
+      duration: "2022-2025",
+      details: "BSc IT - Semester 5 SGPA: 9.50"
+    },
+    {
+      institution: "PVG Vidya Bhavan College of Science & Commerce",
+      duration: "2021-2022",
+      details: " 12th HSC (Higher Secondary Certificate)"
+    },
+    {
+      institution: "Joymax English High School & JR. College",
+      duration: "2020",
+      details: "10th SSC (Senior Secondary Certificate)"
+    }
+  ];
+
+  const experiences = [
+    {
+      company: "Oasis Infobyte",
+      role: "Python Developer Intern",
+      duration: "2023",
+      details: [
+        "Developed BMI Calculator and Weather App",
+        "Built Real-Time Chat Application using Socket.IO",
+        "Gained expertise in Flask, MySQL, and API integration"
+      ]
+    },
+    {
+      company: "Hex Softwares",
+      role: "Python Programming Intern",
+      duration: "2023",
+      details: [
+        "Developed Expense Tracker and Geolocation Tracker",
+        "Improved problem-solving and debugging skills",
+        "Received letter of recommendation for quality work"
+      ]
+    }
+  ];
+
   return (
     <section id="about" className="about-section">
       <div className="about-container">
-        <h2 className="section-title">About Me</h2>
-        <div className="about-content">
-          <div className="about-left">
-            <p>
-              Hi, I’m <strong>Aditya Vishwakarma</strong>, a third-year BSc IT
-              student with a passion for web development, AI, and cybersecurity.
-            </p>
-            <br />
-            <p>
-              I specialize in building full-stack applications and am skilled in
-              Python, Java, and web technologies.
-            </p>
-            <br />
-            <hr />
-            <br />
-            <h3>Education</h3>
-            <ul>
-              <li>
-                <strong>
-                  Pune Vidyarthi Griha's College of <br />
-                  Science & Technology
-                </strong>{" "}
-                <span>(2022-2025)</span>
-                <br />
-                <i>
-                  <small>Semester 5 SGPA: 9.50</small>
-                </i>
-              </li>
-              {/* Add more achievements or internship details */}
-            </ul>
-          </div>
+        <motion.h2 
+          className="section-title"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          About Me
+        </motion.h2>
 
-          {/* Divider Line */}
+        <div className="about-content">
+          <motion.div 
+            className="about-left"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="intro-card">
+              <h3>Hello, I'm Aditya Vishwakarma</h3>
+              <p className="intro-text">
+                A passionate third-year BSc IT student specializing in full-stack development, 
+                AI, and cybersecurity. I thrive on building innovative solutions and constantly 
+                expanding my technical expertise.
+              </p>
+              <div className="skills-highlight">
+                <span>Python</span>
+                <span>JavaScript</span>
+                <span>React</span>
+                <span>AI/ML</span>
+                <span>Cybersecurity</span>
+              </div>
+            </div>
+
+            <div className="education-section">
+              <h4><FaGraduationCap className="icon" /> Education</h4>
+              {education.map((edu, index) => (
+                <div key={index} className="education-card">
+                  <h5>{edu.institution}</h5>
+                  <p className="duration">{edu.duration}</p>
+                  <p className="details">{edu.details}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
           <div className="divider"></div>
 
-          <div className="about-right">
-            <br />
-            <h3>Internship</h3>
-            <details>
-              <summary>Internship Experience at Oasis Infobyte</summary>
-              <p>
-                During my internship, I worked on a variety of projects that
-                enhanced my skills in Python programming, web development, and
-                API integration. Key achievements include developing a BMI
-                Calculator, a Weather App integrated with OpenWeatherMap API,
-                and a Real-Time Chat Application using Socket.IO and Python
-                Flask. I gained hands-on experience with technologies like
-                Flask, MySQL, Git, and more, solidifying my passion for software
-                development.
-              </p>
-            </details>
-            <details>
-              <summary>Internship Experience at Hex Softwares</summary>
-              <p>
-                Completed a 4-week virtual internship focused on Python
-                Programming, where I contributed to projects like Expense
-                Tracker and Geolocation Tracker. Gained hands-on experience in
-                problem-solving, debugging, and building Python applications.
-                Collaborated with cross-department teams, strengthening
-                technical skills and teamwork. Recognized for delivering quality
-                code, meeting deadlines, and received commendations in a letter
-                of recommendation.
-              </p>
-            </details>
-          </div>
+          <motion.div 
+            className="about-right"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="experience-section">
+              <h4><FaBriefcase className="icon" /> Experience</h4>
+              {experiences.map((exp, index) => (
+                <div key={index} className="experience-card">
+                  <div className="experience-header">
+                    <h5>{exp.company}</h5>
+                    <span className="duration">{exp.duration}</span>
+                  </div>
+                  <p className="role">{exp.role}</p>
+                  <ul className="experience-details">
+                    {exp.details.map((detail, i) => (
+                      <li key={i}>{detail}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -1,122 +1,155 @@
 import React, { useState } from 'react';
-import "../styles/Contact.css"; // Your CSS file for styling
-import contactImage from "../assets/images/contact-image.jpg"; // Make sure to replace with your image path
+import { motion } from 'framer-motion';
+import { FiMail, FiInstagram, FiSend, FiX } from 'react-icons/fi';
+import "../styles/Contact.css";
+import contactImage from "../assets/images/contact-image.jpg";
 
 const Contact = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to handle modal visibility
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  }); // State to store form data
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // Handle opening the modal
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  // Handle closing the modal
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  // Handle form input change
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  // Handle form submission
-  const handleFormSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    // Here, you can handle form submission, e.g., sending the data to an API or email
+    // Add your submission logic here
     console.log("Form Submitted", formData);
-    closeModal(); // Close the modal after submitting
+    setIsSubmitted(true);
+    setTimeout(() => {
+      setIsModalOpen(false);
+      setIsSubmitted(false);
+    }, 2000);
   };
 
   return (
     <section id="contact" className="contact-section">
       <div className="contact-container">
-        <div className="contact-left">
+        <motion.div 
+          className="contact-left"
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           <h1 className="contact-title">
-            Have a question, problem or project? Let's &nbsp; 
-            <i>
-              <a onClick={openModal}>talk.</a>
-            </i>
+            Let's Create Something 
+            <span> Amazing Together</span>
           </h1>
-          <p className="contact-message">
-            Let's talk! Feel free to reach out to me through the links below.
-          </p>
-          <div className="contact-links">
-            <a href="mailto:work.aditya2010@gmail.com" className="contact-link">
-              Gmail
-            </a>
-            <a
+          
+          <div className="contact-methods">
+            <motion.a 
+              href="mailto:work.aditya2010@gmail.com"
+              className="contact-card"
+              whileHover={{ y: -5 }}
+            >
+              <FiMail className="contact-icon" />
+              <div>
+                <h3>Email Me</h3>
+                <p>work.aditya2010@gmail.com</p>
+              </div>
+            </motion.a>
+
+            <motion.a
               href="https://www.instagram.com/heliosaadi/"
               target="_blank"
               rel="noopener noreferrer"
-              className="contact-link"
+              className="contact-card"
+              whileHover={{ y: -5 }}
             >
-              Instagram
-            </a>
+              <FiInstagram className="contact-icon" />
+              <div>
+                <h3>Instagram</h3>
+                <p>@heliosaadi</p>
+              </div>
+            </motion.a>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="contact-right">
-          <img src={contactImage} alt="Contact" className="contact-image" />
-        </div>
+        <motion.div 
+          className="contact-right"
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="image-container">
+            <img src={contactImage} alt="Contact" className="contact-image" />
+            <button 
+              className="cta-button"
+              onClick={() => setIsModalOpen(true)}
+            >
+              Send a Message
+              <FiSend className="send-icon" />
+            </button>
+          </div>
+        </motion.div>
       </div>
 
-      {/* Modal */}
       {isModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <button className="close-btn" onClick={closeModal}>
-              X
+        <motion.div 
+          className="modal-overlay"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
+          <motion.div 
+            className="modal-content"
+            initial={{ scale: 0.8 }}
+            animate={{ scale: 1 }}
+          >
+            <button className="close-btn" onClick={() => setIsModalOpen(false)}>
+              <FiX />
             </button>
-            <h2>Tell Me</h2>
-            <form onSubmit={handleFormSubmit}>
+            
+            <h2>Let's Talk!</h2>
+            
+            <form onSubmit={handleSubmit}>
               <div className="form-group">
-                <label htmlFor="name">Name</label>
                 <input
                   type="text"
-                  id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
                   required
                 />
+                <label>Your Name</label>
               </div>
+
               <div className="form-group">
-                <label htmlFor="email">Email</label>
                 <input
                   type="email"
-                  id="email"
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
                   required
                 />
+                <label>Email Address</label>
               </div>
+
               <div className="form-group">
-                <label htmlFor="message">Message</label>
                 <textarea
-                  id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleInputChange}
                   required
                 ></textarea>
+                <label>Your Message</label>
               </div>
+
               <button type="submit" className="send-btn">
-                Send Message
+                {isSubmitted ? 'Sending...' : 'Send Message'}
+                <FiSend />
               </button>
             </form>
-          </div>
-        </div>
+
+            {isSubmitted && (
+              <div className="success-message">
+                🎉 Message sent successfully!
+              </div>
+            )}
+          </motion.div>
+        </motion.div>
       )}
     </section>
   );

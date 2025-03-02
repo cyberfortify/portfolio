@@ -18,7 +18,6 @@ const App = () => {
   return (
     <div>
       <Introduction />
-      <ScrollToTop />
 
       <motion.section
         initial="hidden"

@@ -1,190 +1,207 @@
 /* About Section */
 .about-section {
-    padding: 2rem 2rem;
-    min-height: 100vh;
+  padding: 2rem 2rem;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  min-height: 100vh;
+  color: white;
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  background: linear-gradient(45deg, #00ff88, #61dafb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.about-content {
+  display: flex;
+  gap: 3rem;
+  position: relative;
+}
+
+.intro-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 2rem;
+}
+
+.intro-card h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #00ff88;
+}
+
+.intro-text {
+  line-height: 1.8;
+  opacity: 0.9;
+  margin-bottom: 1.5rem;
+}
+
+.skills-highlight {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.skills-highlight span {
+  background: rgba(0, 255, 136, 0.1);
+  color: #00ff88;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.education-section,
+.experience-section {
+  margin-top: 2rem;
+}
+
+.education-section h4,
+.experience-section h4 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon {
+  color: #00ff88;
+}
+
+.education-card,
+.experience-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 15px;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.education-card:hover,
+.experience-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.education-card h5,
+.experience-card h5 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #00ff88;
+}
+
+.duration {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.role {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1rem;
+}
+
+.experience-details {
+  list-style: none;
+  padding-left: 1rem;
+}
+
+.experience-details li {
+  position: relative;
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+}
+
+.experience-details li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: #00ff88;
+}
+
+.divider {
+  width: 2px;
+  background: linear-gradient(180deg, #00ff88, transparent);
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.divider::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent, #00ff88, transparent);
+  animation: shine 5s infinite;
+}
+
+@keyframes shine {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
   }
-  
-  .about-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
+
+  .divider {
+    display: none;
   }
-  
+
   .section-title {
     font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 2rem;
   }
-  
-  .about-content {
-    display: flex;
-    justify-content: space-between;
-    gap: 2rem;
-    flex-wrap: wrap;
-    position: relative; /* Prevents content shifting */
-    overflow: hidden;
-  }
-  
-  .about-left {
-    flex: 1;
-    font-size: 1.2rem;
-    line-height: 1.6;
-    text-align:justify;
-  }
-  .about-left h3 {
+
+  .intro-card h3 {
     font-size: 1.8rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
   }
-  
-  .about-left ul {
-    list-style: none;
-    padding: 0;
+
+  .education-section h4,
+  .experience-section h4 {
+    font-size: 1.3rem;
   }
-  
-  .about-left ul strong,span {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
+}
+
+@media (max-width: 480px) {
+  .about-section {
+    padding: 5rem 1rem;
   }
-  
- /* About Section Right (Internship Details) */
-.about-right {
-    flex: 1;
-    text-align: left;
-    padding: 2rem;
-    position: relative;
-  }
-  
-  .about-right h3 {
+
+  .section-title {
     font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    color: #1de9b6;
   }
-  
-  /* Style for each details block */
-  .about-right details {
-    margin-bottom: 1.5rem;
-    padding: 1rem;
-    background-color: #f1f1f1;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+
+  .intro-card {
+    padding: 1.5rem;
   }
-  
-  /* Style for the summary element (clickable) */
-  .about-right summary {
-    font-size: 1.2rem;
-    font-weight: bold;
-    cursor: pointer;
-    color: #243b55;
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 5px;
-    user-select: none;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .about-right summary:hover {
-    background-color: #1de9b6;
-    color: #fff;
-  }
-  
-  /* Style for the p (paragraph) element inside details */
-  .about-right details p {
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #333;
-    padding-top: 10px;
-    padding-left: 10px;
-    text-align: justify;
-  }
-  
-  /* Hover effect on details */
-  .about-right details:hover {
-    transform: scale(1.05);
-  }
-  
-  /* Responsive Design */
-  @media screen and (max-width: 768px) {
-    .about-right {
-      padding: 1rem;
-    }
-  
-    .about-right h3 {
-      font-size: 1.8rem;
-    }
-  
-    .about-right details {
-      padding: 0.8rem;
-    }
-  
-    .about-right summary {
-      font-size: 1rem;
-    }
-  }
-  
-  /* Divider Line in the Middle */
-  .divider {
-    width: 4px;
-    background: linear-gradient(180deg, rgba(29, 233, 182, 0.8), transparent);
-    height: 70vh; /* Set a fixed height to make sure it is visible initially */
-    margin: 0 2rem; /* Add spacing around the divider */
-    position: relative;
-  }
-  
-  /* Shine Animation for the Divider Line */
-  @keyframes shine {
-    0% {
-      height: 0;
-    }
-    50% {
-      height: 80%;  /* You can adjust the height percentage */
-    }
-    100% {
-      height: 0;
-    }
-  }
-  
-  /* Responsive Design */
-  @media screen and (max-width: 768px) {
-    .about-content {
-      flex-direction: column;
-      text-align: center;
-      min-height: 100vh;
-    }
-  
-    .about-left, .about-right {
-      text-align: center;
-    }
-  
-    .about-left {
-      margin-bottom: 1rem;
-    }
-  
-    .divider {
-      display: none;
-    }
-  }
-  /* Add this media query to all components */
-@media (max-width: 768px) {
-  .intro-heading {
-    font-size: 2.5rem;
-  }
-  
-  .nav-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    height: 100vh;
-    width: 70%;
-    background: rgba(0,0,0,0.95);
-    flex-direction: column;
-    padding: 2rem;
-    transition: right 0.3s ease;
-  }
-  
-  .nav-links.show {
-    right: 0;
+
+  .skills-highlight span {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
   }
 }

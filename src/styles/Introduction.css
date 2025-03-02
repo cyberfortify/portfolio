@@ -80,13 +80,12 @@ body {
 /* Fullscreen Introduction Page */
 /* Introduction Section */
 .introduction {
-  display: flex;
-  height: 100vh;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
   padding: 2rem;
-  background: linear-gradient(to bottom, #141e30, #243b55);
-  /* Gradient background */
+  align-items: center;
+  position: relative;
 }
 
 /* Left Section */
@@ -112,17 +111,11 @@ body {
 
 /* Apply Typing Animation to Heading */
 .intro-heading {
-  font-size: 3rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  animation: typing 3s steps(40) 1s forwards, fadeIn 1.5s ease-in-out;
-  white-space: nowrap;
-  overflow: hidden;
-  /* Hide text that is not yet typed */
-  width: 0;
-  /* Start with no width */
-  display: inline-block;
-  /* Make sure the element takes the full width */
+  font-size: 3.5rem;
+  background: linear-gradient(45deg, #00ff88, #61dafb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1.5rem;
 }
 
 /* Fade-in Animation */
@@ -201,11 +194,15 @@ body {
 }
 
 .intro-image {
-  width: 100%;
-  max-width: 500px;
-  border-radius: 15px;
-  animation: fadeIn 2.5s ease-in-out;
-  filter: drop-shadow(4px 10px 15px rgb(0, 0, 0)); /* Horizontal, Vertical, Blur, Color */
+  width: 400px;
+  border-radius: 20px;
+  transform: rotateZ(3deg);
+  transition: transform 0.3s ease;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.intro-image:hover {
+  transform: rotateZ(0deg);
 }
 
 /* Fade-in Animation */
@@ -226,9 +223,8 @@ body {
 /* For devices with width <= 768px (tablets and smaller) */
 @media (max-width: 768px) {
   .introduction {
-    flex-direction: column;
-    /* Stack the sections vertically on smaller screens */
-    min-height: 100vh;
+    grid-template-columns: 1fr;
+    text-align: center;
 
   }
 
@@ -249,9 +245,8 @@ body {
   }
 
   .intro-image {
-    display: none;
     width: 80%;
-    max-width: 500px;
+    margin: 0 auto;
   }
 
   .intro-buttons {

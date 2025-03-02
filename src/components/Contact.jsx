@@ -55,7 +55,7 @@ const Contact = () => {
               Gmail
             </a>
             <a
-              href="https://www.instagram.com/yourusername/"
+              href="https://www.instagram.com/heliosaadi/"
               target="_blank"
               rel="noopener noreferrer"
               className="contact-link"

@@ -166,3 +166,25 @@
       display: none;
     }
   }
+  /* Add this media query to all components */
+@media (max-width: 768px) {
+  .intro-heading {
+    font-size: 2.5rem;
+  }
+  
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 70%;
+    background: rgba(0,0,0,0.95);
+    flex-direction: column;
+    padding: 2rem;
+    transition: right 0.3s ease;
+  }
+  
+  .nav-links.show {
+    right: 0;
+  }
+}

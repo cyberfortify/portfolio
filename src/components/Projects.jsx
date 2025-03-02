@@ -1,9 +1,9 @@
-import React from "react";
-import Slider from "react-slick";
+import React, { useState } from "react";
 import "../styles/Projects.css";
 import Project1 from "../assets/images/project1.jpg";
 import Project2 from "../assets/images/project2.png";
 import Project3 from "../assets/images/project3.png";
+import { motion } from "framer-motion";
 
 const projects = [
   {
@@ -12,91 +12,98 @@ const projects = [
     description: "A web app to track your expenses efficiently.",
     image: Project1,
     link: "#",
-
+    tech: ["React", "Node.js", "MongoDB", "Express"],
+    github: "#"
   },
   {
     id: 2,
     title: "Weather App",
-    description: "A weather forecasting app using OpenWeatherMap API.",
+    description: "Real-time weather forecasting using OpenWeatherMap API.",
     image: Project2,
     link: "#",
+    tech: ["React", "API Integration", "CSS3"],
+    github: "#"
   },
   {
     id: 3,
-    title: "Real-Time Chat App",
-    description: "A chat app built with Socket.IO and Python Flask.",
+    title: "Real-Time Chat",
+    description: "Chat app with Socket.IO & Python Flask.",
     image: Project3,
     link: "#",
+    tech: ["Python", "Flask", "Socket.IO"],
+    github: "#"
   },
-  {
-    id: 4,
-    title: "Task Manager",
-    description: "A task management app with deadlines and reminders.",
-    image: "/assets/project4.jpg",
-    link: "#",
-  },
-  // Add more projects as needed in the future
+  // Add new projects here
 ];
 
 const Projects = () => {
-  // Settings for the carousel
-  const settings = {
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+  const [selectedProject, setSelectedProject] = useState(null);
 
   return (
     <section id="projects" className="projects-section">
-      <h2 className="section-title">Projects</h2>
-      <Slider {...settings} className="project-carousel">
-        {projects.map((project) => (
-          <div key={project.id} className="project-card">
-            <div className="card-inner">
-              {/* Front of the Card */}
-              <div className="card-front">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="project-image"
-                />
-                <h3 className="project-title">{project.title}</h3>
-              </div>
+      <motion.h2 
+        className="section-title"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+      >
+        Featured Projects
+      </motion.h2>
 
-              {/* Back of the Card */}
-              <div className="card-back">
-                <h2>{project.title}</h2><br />
-                <p className="project-description">{project.description}</p>
-                <a
-                  href={project.link}
-                  className="project-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View Project
-                </a>
+      <div className="projects-grid">
+        {projects.map((project) => (
+          <motion.div 
+            key={project.id}
+            className="project-card"
+            whileHover={{ scale: 1.05 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="card-content">
+              <img 
+                src={project.image} 
+                alt={project.title} 
+                className="project-image"
+              />
+              <div className="project-overlay">
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+                <div className="tech-stack">
+                  {project.tech.map((tech, index) => (
+                    <span key={index}>{tech}</span>
+                  ))}
+                </div>
+                <div className="project-links">
+                  <a 
+                    href={project.link} 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="demo-link"
+                  >
+                    Live Demo
+                  </a>
+                  <a 
+                    href={project.github} 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="github-link"
+                  >
+                    GitHub
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </Slider>
+      </div>
+
+      {/* Add Project Modal */}
+      {selectedProject && (
+        <div className="project-modal">
+          {/* Modal content here */}
+        </div>
+      )}
     </section>
   );
 };

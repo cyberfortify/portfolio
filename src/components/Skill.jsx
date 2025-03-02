@@ -1,52 +1,131 @@
+import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { Canvas } from '@react-three/fiber';
+import { Sphere, MeshDistortMaterial } from '@react-three/drei';
 import { useInView } from 'react-intersection-observer';
 import "../styles/Skill.css";
 
 const SkillsSection = () => {
-  const skills = [
-    "Python", "JavaScript", "React", "HTML5", "CSS3",
-    "Node.js", "SQL", "Git", "Flask", "Cybersecurity",
-    "AI/ML", "Java", "REST APIs", "Linux"
-  ];
+  const [activeTab, setActiveTab] = useState('all');
+  const [selectedSkill, setSelectedSkill] = useState(null);
+  const skillsRef = useRef(null);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
+  const skillsData = {
+    languages: [
+      { name: "Python", icon: "🐍", color: "#3776AB", proficiency: 90, projects: [1, 2] },
+      { name: "JavaScript", icon: "🚀", color: "#F7DF1E", proficiency: 95, projects: [1, 3] },
+      { name: "Java", icon: "☕", color: "#007396", proficiency: 80, projects: [2] }
+    ],
+    frameworks: [
+      { name: "React", icon: "⚛️", color: "#61DAFB", proficiency: 95, projects: [1, 3] },
+      { name: "Node.js", icon: "🌐", color: "#68A063", proficiency: 90, projects: [1] },
+      { name: "Flask", icon: "🍵", color: "#000000", proficiency: 85, projects: [2] }
+    ],
+    tools: [
+      { name: "Git", icon: "🔀", color: "#F54D27", proficiency: 95, projects: [1, 2, 3] },
+      { name: "Linux", icon: "🐧", color: "#FCC624", proficiency: 90, projects: [3] },
+      { name: "Docker", icon: "🐳", color: "#2496ED", proficiency: 80, projects: [1] }
+    ]
   };
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: { y: 0, opacity: 1 }
-  };
-
+  const allSkills = [...skillsData.languages, ...skillsData.frameworks, ...skillsData.tools];
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
+  const handleSkillClick = (skill) => {
+    setSelectedSkill(skill);
+    skillsRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <section id="skills" className="skills-section">
-      <h2 className="section-title">Technical Skills</h2>
-      <motion.div
+    <section id="skills" className="skills-section" ref={skillsRef}>
+      <motion.h2 
+        className="section-title"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        Technical Expertise
+      </motion.h2>
+
+      <div className="skill-tabs">
+        {['all', 'languages', 'frameworks', 'tools'].map(tab => (
+          <button
+            key={tab}
+            className={`skill-tab ${activeTab === tab ? 'active' : ''}`}
+            onClick={() => setActiveTab(tab)}
+          >
+            {tab.charAt(0).toUpperCase() + tab.slice(1)}
+          </button>
+        ))}
+      </div>
+
+      <motion.div 
+        className="skills-grid"
         ref={ref}
-        className="skills-container"
-        variants={containerVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
       >
-        {skills.map((skill, index) => (
+        {(activeTab === 'all' ? allSkills : skillsData[activeTab]).map((skill, index) => (
           <motion.div
             key={index}
-            className="skill-item"
-            variants={itemVariants}
-            whileHover={{ scale: 1.1 }}
+            className="skill-card"
+            style={{ '--skill-color': skill.color }}
+            variants={{
+              hidden: { opacity: 0, scale: 0 },
+              visible: { opacity: 1, scale: 1 }
+            }}
+            transition={{ 
+              type: "spring",
+              stiffness: 100,
+              delay: index * 0.05
+            }}
+            onClick={() => handleSkillClick(skill)}
           >
-            {skill}
+            <div className="skill-sphere">
+              <Canvas>
+                <ambientLight intensity={0.5} />
+                <pointLight position={[10, 10, 10]} />
+                <Sphere args={[1, 32, 32]}>
+                  <MeshDistortMaterial
+                    color={skill.color}
+                    attach="material"
+                    distort={0.5}
+                    speed={2}
+                  />
+                </Sphere>
+              </Canvas>
+            </div>
+            <div className="skill-content">
+              <div className="skill-icon">{skill.icon}</div>
+              <div className="skill-name">{skill.name}</div>
+              <div className="skill-progress">
+                <div 
+                  className="progress-bar"
+                  style={{ width: `${skill.proficiency}%` }}
+                ></div>
+              </div>
+            </div>
           </motion.div>
         ))}
       </motion.div>
+
+      {selectedSkill && (
+        <div className="skill-details-modal">
+          <div className="modal-content">
+            <button className="close-btn" onClick={() => setSelectedSkill(null)}>
+              &times;
+            </button>
+            <h3>{selectedSkill.name} Projects</h3>
+            <div className="related-projects">
+              {selectedSkill.projects.map(projectId => (
+                <div key={projectId} className="project-card">
+                  Project {projectId} Details
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

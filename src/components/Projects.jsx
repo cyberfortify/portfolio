@@ -32,7 +32,7 @@ const projects = [
     link: "#",
     tech: ["Python", "Flask", "Socket.IO"],
     github: "#"
-  },
+  }
   // Add new projects here
 ];
 

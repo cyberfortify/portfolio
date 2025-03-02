@@ -26,7 +26,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 1rem 4rem;
   z-index: 1000;
   backdrop-filter: blur(10px);
   background:transparent;
@@ -162,11 +162,16 @@ body {
   border: 2px solid #00ff88;
   color: #00ff88;
 }
-
+.secondary-btn a{
+  text-decoration: none;
+  color: #fff;
+}
 .secondary-btn:hover {
   background: #00ff88;
-  color: #000;
   transform: translateY(-3px);
+}
+.secondary-btn a:hover{
+  color:#000;
 }
 
 .intro-right {

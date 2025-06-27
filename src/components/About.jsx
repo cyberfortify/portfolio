@@ -8,7 +8,7 @@ const About = () => {
     {
       institution: "Pune Vidyarthi Griha's College of Science & Technology",
       duration: "2022-2025",
-      details: "BSc IT - Semester 5 SGPA: 9.50"
+      details: "BSc IT - CGPA: 9.63"
     },
     {
       institution: "PVG Vidya Bhavan College of Science & Commerce",

@@ -13,22 +13,27 @@ const SkillsSection = () => {
   const skillsData = {
     languages: [
       { name: "Python", icon: "🐍", color: "#3776AB", proficiency: 90, projects: [1, 2] },
-      { name: "JavaScript", icon: "🚀", color: "#F7DF1E", proficiency: 95, projects: [1, 3] },
-      { name: "Java", icon: "☕", color: "#007396", proficiency: 80, projects: [2] }
+      { name: "JavaScript", icon: "🚀", color: "#F7DF1E", proficiency: 80, projects: [1, 3] },
+      { name: "HTML", icon: "📄", color: "#E34F26", proficiency: 90, projects: [1, 4] }, 
+      { name: "CSS", icon: "🎨", color: "#1572B6", proficiency: 85, projects: [1, 4] }
+      
     ],
     frameworks: [
-      { name: "React", icon: "⚛️", color: "#61DAFB", proficiency: 95, projects: [1, 3] },
-      { name: "Node.js", icon: "🌐", color: "#68A063", proficiency: 90, projects: [1] },
+      { name: "React.js", icon: "⚛️", color: "#61DAFB", proficiency: 95, projects: [1, 3] },
       { name: "Flask", icon: "🍵", color: "#000000", proficiency: 85, projects: [2] }
     ],
     tools: [
       { name: "Git", icon: "🔀", color: "#F54D27", proficiency: 95, projects: [1, 2, 3] },
-      { name: "Linux", icon: "🐧", color: "#FCC624", proficiency: 90, projects: [3] },
-      { name: "Docker", icon: "🐳", color: "#2496ED", proficiency: 80, projects: [1] }
-    ]
+      { name: "GitHub", icon: "🐱", color: "#181717", proficiency: 80, projects: [1, 2, 3, 4] }
+      
+    ],
+    databases: [
+      { name: "MySQL", icon: "🐬", color: "#00758F", proficiency: 85, projects: [1, 2, 4] },
+      { name: "Firebase", icon: "🔥", color: "#FFCA28", proficiency: 80, projects: [2, 4] }
+    ]    
   };
 
-  const allSkills = [...skillsData.languages, ...skillsData.frameworks, ...skillsData.tools];
+  const allSkills = [...skillsData.languages, ...skillsData.frameworks, ...skillsData.tools, ...skillsData.databases]
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   const handleSkillClick = (skill) => {
@@ -48,7 +53,7 @@ const SkillsSection = () => {
       </motion.h2>
 
       <div className="skill-tabs">
-        {['all', 'languages', 'frameworks', 'tools'].map(tab => (
+        {['all', 'languages', 'frameworks', 'tools','databases'].map(tab => (
           <button
             key={tab}
             className={`skill-tab ${activeTab === tab ? 'active' : ''}`}

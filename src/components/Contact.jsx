@@ -62,7 +62,7 @@ const Contact = () => {
               <FiInstagram className="contact-icon" />
               <div>
                 <h3>Instagram</h3>
-                <p>@heliosaadi</p>
+                <p>@imadityvk</p>
               </div>
             </motion.a>
           </div>

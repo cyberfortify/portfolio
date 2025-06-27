@@ -3,11 +3,43 @@ import "../styles/Projects.css";
 import Project1 from "../assets/images/project1.jpg";
 import Project2 from "../assets/images/project2.png";
 import Project3 from "../assets/images/project3.png";
+import Project4 from "../assets/images/projectemp.png";
+import Project5 from "../assets/images/project3D.png";
+import Project6 from "../assets/images/projecttodo.jpg";
 import { motion } from "framer-motion";
 
 const projects = [
   {
     id: 1,
+    title: "Employee Management System",
+    description: "A simple, elegant React + Tailwind CSS web app to add, edit, delete & view employee details, with local‑storage persistence, light/dark mode, and Framer Motion animations.",
+    image: Project4,
+    link: "https://employee-management-system-nu-rose.vercel.app/",
+    tech: ["React.js", "Tailwind CSS", "Framer Motion", "React Router", "LocalStorage"],
+    github: "https://github.com/cyberfortify/employee-management-system"
+  },
+  {
+    id: 2,
+    title: "Cyberfiction 3D Animation Website",
+    description: "A front‑end website displaying a 3D model with scroll‑triggered animation using HTML, CSS & JavaScript.",
+    image: Project5,
+    link: "https://3d-website-animation.vercel.app/",
+    tech: ["HTML", "CSS", "JavaScript", "3D Animation"],
+    github: "https://github.com/cyberfortify/3D_Website_Animation"
+  }, 
+  
+  {
+    id: 3,
+    title: "Simple Flask To‑Do App",
+    description: "A basic To‑Do application built with Flask, MySQL, styled using Semantic UI.",
+    image: Project6,
+    link: null,
+    tech: ["Flask", "MySQL", "Semantic‑UI"],
+    github: "https://github.com/cyberfortify/to-do-flask-app"
+  },  
+  
+  {
+    id: 4,
     title: "Expense Tracker",
     description: "A web app to track your expenses efficiently.",
     image: Project1,
@@ -16,7 +48,7 @@ const projects = [
     github: "#"
   },
   {
-    id: 2,
+    id: 5,
     title: "Weather App",
     description: "Real-time weather forecasting using OpenWeatherMap API.",
     image: Project2,
@@ -25,7 +57,7 @@ const projects = [
     github: "#"
   },
   {
-    id: 3,
+    id: 6,
     title: "Real-Time Chat",
     description: "Chat app with Socket.IO & Python Flask.",
     image: Project3,
